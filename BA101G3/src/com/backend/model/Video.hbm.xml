@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017/7/13 ?W?? 02:41:10 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.backend.model.Video" table="VIDEO" schema="BA101G3">
+        <id name="vidNo" type="string">
+            <column name="VID_NO" length="8" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="baby" class="com.backend.model.Baby" fetch="select">
+            <column name="BABY_NO" length="8" not-null="true" />
+        </many-to-one>
+        <property name="vidTitle" type="string">
+            <column name="VID_TITLE" length="90" />
+        </property>
+        <property name="vidDate" type="Timestamp">
+            <column name="VID_DATE" not-null="true" />
+        </property>
+        <property name="vidAnnot" type="string">
+            <column name="VID_ANNOT" length="200" />
+        </property>
+        <property name="vidFile" type="byte[]">
+            <column name="VID_FILE" />
+        </property>
+        <property name="vidShr" type="string">
+            <column name="VID_SHR" length="1" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

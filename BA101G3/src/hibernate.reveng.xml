@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-schema="BA101G3" match-name="BABY"/>
+  <table-filter match-schema="BA101G3" match-name="ANSWER"/>
+  <table-filter match-schema="BA101G3" match-name="ARTICLE"/>
+  <table-filter match-schema="BA101G3" match-name="CHAT_FRIEND"/>
+  <table-filter match-schema="BA101G3" match-name="CHAT_GROUP"/>
+  <table-filter match-schema="BA101G3" match-name="MEMBER"/>
+  <table-filter match-schema="BA101G3" match-name="PRODUCT"/>
+  <table-filter match-schema="BA101G3" match-name="PRODUCT_CLASSIFICATION"/>
+  <table-filter match-schema="BA101G3" match-name="QUESTION"/>
+  <table-filter match-schema="BA101G3" match-name="USER_REPORT"/>
+  <table-filter match-schema="BA101G3" match-name="SELLER_REPORT"/>
+  <table-filter match-schema="BA101G3" match-name="QUESTION_CLASSIFICATION"/>
+  <table-filter match-schema="BA101G3" match-name="VIDEO"/>
+</hibernate-reverse-engineering>

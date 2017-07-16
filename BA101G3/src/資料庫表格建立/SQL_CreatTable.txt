@@ -1,0 +1,827 @@
+﻿DROP TABLE news;
+DROP TABLE admin_authority;
+DROP TABLE authority_feature;
+DROP TABLE admin;
+DROP TABLE seller_report;
+DROP TABLE seller_rating;
+DROP TABLE product_message_report;
+DROP TABLE product_message;
+DROP TABLE product_report;
+DROP TABLE buyer_report;
+DROP TABLE orderlist;
+DROP TABLE product;
+DROP TABLE product_classification;
+DROP TABLE map_comment;
+DROP TABLE map_mechanism;
+DROP TABLE user_report;
+DROP TABLE chat_record;
+DROP TABLE chat_notebook;
+DROP TABLE chat_group_item;
+DROP TABLE chat_group;
+DROP TABLE chat_friend;
+DROP TABLE expert_favorite;
+DROP TABLE article_favorite;
+DROP TABLE article_message_report;
+DROP TABLE article_message;
+DROP TABLE article;
+DROP TABLE article_classification;
+DROP TABLE answer_report;
+DROP TABLE answer;
+DROP TABLE question;
+DROP TABLE question_classification;
+DROP TABLE voice_diary;
+DROP TABLE video;
+DROP TABLE photo;
+DROP TABLE growing_diary;
+DROP TABLE baby;
+DROP TABLE member;
+DROP TABLE expert_classification;
+DROP TABLE growing_control;
+DROP TABLE no_staple_food;
+DROP TABLE growing_interval;
+
+DROP SEQUENCE new_no_seq;
+DROP SEQUENCE auth_no_seq;
+DROP SEQUENCE adm_no_seq;
+DROP SEQUENCE pmsg_no_seq;
+DROP SEQUENCE ord_no_seq;
+DROP SEQUENCE pro_no_seq;
+DROP SEQUENCE proc_no_seq;
+DROP SEQUENCE mcmt_no_seq;
+DROP SEQUENCE map_no_seq;
+DROP SEQUENCE cr_no_seq;
+DROP SEQUENCE cnb_no_seq;
+DROP SEQUENCE cg_no_seq;
+DROP SEQUENCE cf_no_seq;
+DROP SEQUENCE amsg_no_seq;
+DROP SEQUENCE art_no_seq;
+DROP SEQUENCE artc_no_seq;
+DROP SEQUENCE ans_no_seq;
+DROP SEQUENCE qu_no_seq;
+DROP SEQUENCE quec_no_seq;
+DROP SEQUENCE vd_no_seq;
+DROP SEQUENCE vid_no_seq;
+DROP SEQUENCE pho_no_seq;
+DROP SEQUENCE gd_no_seq;
+DROP SEQUENCE baby_no_seq;
+DROP SEQUENCE nf_no_seq;
+DROP SEQUENCE gint_no_seq;
+DROP SEQUENCE mem_no_seq;
+DROP SEQUENCE exp_no_seq;
+
+----------------------------------
+--專家分類TABLE創建
+----------------------------------
+CREATE TABLE expert_classification (
+    exp_no           VARCHAR2(4) NOT NULL,
+    exp_cname	     VARCHAR2(50) NOT NULL,
+    CONSTRAINT exp_no_pk PRIMARY KEY (exp_no));
+
+CREATE SEQUENCE exp_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+
+----------------------------------
+--會員TABLE創建
+----------------------------------
+CREATE TABLE member (
+    mem_no           VARCHAR2(8) NOT NULL,
+    exp_no		     VARCHAR2(4),
+    memg_gr	         CHAR(1) NOT NULL,
+    mem_acct	     VARCHAR2(20) NOT NULL,
+    mem_pwd	         VARCHAR2(20) NOT NULL,
+    mem_joind	     DATE NOT NULL,
+    mem_updated	     DATE,
+    mem_name	     VARCHAR2(30) NOT NULL,
+    mem_aka	         VARCHAR2(30),
+    mem_photo        BLOB,
+    mem_adds	     VARCHAR2(30) NOT NULL,
+    mem_addc	     VARCHAR2(200),
+    mem_phone	     VARCHAR2(20),
+    mem_mail	     VARCHAR2(60),
+    mem_intro_b	     VARCHAR2(600),
+    mem_is_sell	     CHAR(1) NOT NULL,
+    mem_acct_s	     VARCHAR2(20),
+    mem_intro_s	     VARCHAR2(600),
+    mem_point_s      NUMBER(1),
+    mem_intro_e      VARCHAR2(600),
+    mem_is_stop	     CHAR(1) NOT NULL,
+    mem_point_b	     NUMBER(1),
+    CONSTRAINT member_mem_no_pk PRIMARY KEY (mem_no),
+    CONSTRAINT member_exp_no_fk FOREIGN KEY (exp_no) REFERENCES expert_classification (exp_no));
+
+CREATE SEQUENCE mem_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+
+----------------------------------
+--嬰兒成長時程TABLE創建
+----------------------------------
+CREATE TABLE growing_interval (
+    gint_no          VARCHAR2(2) NOT NULL,
+    gint_int         NUMBER(6) NOT NULL,
+    CONSTRAINT gint_no_pk PRIMARY KEY (gint_no));
+
+CREATE SEQUENCE gint_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+----------------------------------
+--嬰兒成長狀況對照TABLE創建
+----------------------------------
+CREATE TABLE growing_control (
+    ctrl_gen         CHAR(1) NOT NULL,
+    gint_no          VARCHAR2(2) NOT NULL,
+    ctrl_hc          NUMBER(6,2) NOT NULL,
+    ctrl_ht          NUMBER(6,2) NOT NULL,
+    ctrl_wt          NUMBER(6,2) NOT NULL,
+    ctrl_diet        NUMBER(6,2),
+    ctrl_sleep       NUMBER(6,2) NOT NULL,
+    CONSTRAINT ctrl_gen_gint_no_pk PRIMARY KEY (ctrl_gen, gint_no),
+    CONSTRAINT ctrl_gint_no_fk FOREIGN KEY (gint_no) REFERENCES growing_interval (gint_no));
+
+
+----------------------------------
+--副食品TABLE創建
+----------------------------------
+CREATE TABLE no_staple_food (
+    nf_no            VARCHAR2(8) NOT NULL,
+    gint_no          VARCHAR2(2) NOT NULL,
+    nf_title         VARCHAR2(90) NOT NULL,
+    nf_cnt           CLOB NOT NULL,    
+    CONSTRAINT nf_no_pk PRIMARY KEY (nf_no),
+    CONSTRAINT nf_gint_no_fk FOREIGN KEY (gint_no) REFERENCES growing_interval (gint_no));
+
+CREATE SEQUENCE nf_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;	
+
+
+----------------------------------
+--嬰兒TABLE創建
+----------------------------------
+CREATE TABLE baby (
+    baby_no          VARCHAR2(8) NOT NULL,
+    mem_no           VARCHAR2(8) NOT NULL,
+    baby_aka         VARCHAR2(30) NOT NULL,
+    baby_bday        DATE NOT NULL,
+    baby_gen         CHAR(1) NOT NULL,
+    baby_hc          NUMBER(6,2) NOT NULL,
+    baby_ht          NUMBER(6,2) NOT NULL,
+    baby_wt          NUMBER(6,2) NOT NULL,
+    baby_is_ar       CHAR(1) NOT NULL,
+    baby_is_ab       CHAR(1) NOT NULL,
+    baby_is_ac       CHAR(1) NOT NULL,
+    baby_is_sf       CHAR(1) NOT NULL,
+    baby_is_ad       CHAR(1) NOT NULL,
+    baby_rd          VARCHAR2(30),
+    CONSTRAINT baby_baby_no_pk PRIMARY KEY (baby_no),
+    CONSTRAINT baby_mem_no_fk FOREIGN KEY (mem_no) REFERENCES member (mem_no));
+
+CREATE SEQUENCE baby_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+----------------------------------
+--成長日誌TABLE創建
+----------------------------------
+CREATE TABLE growing_diary (
+    gd_no            VARCHAR2(8) NOT NULL,
+    baby_no          VARCHAR2(8) NOT NULL,
+    gd_title         VARCHAR2(90) NOT NULL,
+    gd_date          TIMESTAMP NOT NULL,
+    gd_cnt           CLOB NOT NULL,
+    gd_shr           CHAR(1) NOT NULL,
+    CONSTRAINT gd_gd_no_pk PRIMARY KEY (gd_no),
+    CONSTRAINT gd_baby_no_fk FOREIGN KEY (baby_no) REFERENCES baby (baby_no));
+
+CREATE SEQUENCE gd_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+
+----------------------------------
+--相片TABLE創建  	(pho_file BLOB的NOT NULL，暫時拿掉)
+----------------------------------
+CREATE TABLE photo (
+    pho_no           VARCHAR2(8) NOT NULL,
+    baby_no          VARCHAR2(8) NOT NULL,
+    pho_title        VARCHAR2(90),
+    pho_date         TIMESTAMP NOT NULL,
+    pho_annot        VARCHAR2(200),
+    pho_file         BLOB ,
+    pho_shr          CHAR(1) NOT NULL,
+    CONSTRAINT pho_no_pk PRIMARY KEY (pho_no),
+    CONSTRAINT pho_baby_no_fk FOREIGN KEY (baby_no) REFERENCES baby (baby_no));
+
+CREATE SEQUENCE pho_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+----------------------------------
+--影片TABLE創建		(vid_file BLOB的NOT NULL，暫時拿掉)
+----------------------------------
+CREATE TABLE video (
+    vid_no           VARCHAR2(8) NOT NULL,
+    baby_no          VARCHAR2(8) NOT NULL,
+    vid_title        VARCHAR2(90),
+    vid_date         TIMESTAMP NOT NULL,
+    vid_annot        VARCHAR2(200),
+    vid_file         BLOB ,
+    vid_shr          CHAR(1) NOT NULL,
+    CONSTRAINT vid_no_pk PRIMARY KEY (vid_no),
+    CONSTRAINT vid_baby_no_fk FOREIGN KEY (baby_no) REFERENCES baby (baby_no));
+
+CREATE SEQUENCE vid_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+----------------------------------
+--語音日誌TABLE創建  	(vd_cnt BLOB的NOT NULL，暫時拿掉)
+----------------------------------
+CREATE TABLE voice_diary (
+    vd_no            VARCHAR2(8) NOT NULL,
+    baby_no          VARCHAR2(8) NOT NULL,
+    vd_title         VARCHAR2(90) NOT NULL,
+    vd_date          TIMESTAMP NOT NULL,
+    vd_cnt           BLOB ,
+    vd_shr           CHAR(1) NOT NULL,
+    CONSTRAINT vd_no_pk PRIMARY KEY (vd_no),
+    CONSTRAINT vd_baby_no_fk FOREIGN KEY (baby_no) REFERENCES baby (baby_no));
+
+CREATE SEQUENCE vd_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+----------------------------------
+--問題分類TABLE創建
+----------------------------------
+CREATE TABLE question_classification (
+    quec_no          VARCHAR2(4) NOT NULL,
+    quec_name        VARCHAR2(50) NOT NULL,
+
+    CONSTRAINT quec_no_pk PRIMARY KEY (quec_no));
+
+CREATE SEQUENCE quec_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+----------------------------------
+--問題TABLE創建
+----------------------------------
+CREATE TABLE question (
+    qu_no            VARCHAR2(8) NOT NULL,
+    mem_no           VARCHAR2(8) NOT NULL,
+    quec_no          VARCHAR2(4) NOT NULL,
+    qu_title         VARCHAR2(90) NOT NULL,
+    qu_date          TIMESTAMP NOT NULL,
+    qu_cnt           CLOB NOT NULL,
+    CONSTRAINT qu_no_pk PRIMARY KEY (qu_no),
+    CONSTRAINT qu_mem_no_fk FOREIGN KEY (mem_no) REFERENCES member (mem_no),
+    CONSTRAINT qu_quec_no_fk FOREIGN KEY (quec_no) REFERENCES question_classification (quec_no));
+
+CREATE SEQUENCE qu_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+----------------------------------
+--回覆問題TABLE創建
+----------------------------------
+CREATE TABLE answer (
+    ans_no           VARCHAR2(8) NOT NULL,
+    mem_no           VARCHAR2(8) NOT NULL,
+    qu_no            VARCHAR2(8) NOT NULL,
+    ans_date         TIMESTAMP   NOT NULL,
+    ans_cnt          CLOB        NOT NULL,
+    ans_like         NUMBER(5)   NOT NULL,
+    ans_is_hide      Char        NOT NULL,
+    CONSTRAINT ans_no_pk PRIMARY KEY (ans_no),
+    CONSTRAINT ans_mem_no_fk FOREIGN KEY (mem_no) REFERENCES member (mem_no),
+    CONSTRAINT ans_qu_no_fk FOREIGN KEY (qu_no) REFERENCES question (qu_no));
+
+CREATE SEQUENCE ans_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+----------------------------------
+--回覆問題檢舉TABLE創建
+----------------------------------
+CREATE TABLE answer_report (
+    ans_no           VARCHAR2(8) NOT NULL,
+    mem_no           VARCHAR2(8) NOT NULL,
+    ansrpt_date      TIMESTAMP NOT NULL,
+    ansrpt_rsn       VARCHAR2(200) NOT NULL,
+    ansrpt_is_cert   CHAR(1) NOT NULL,
+    ansrpt_unrsn     VARCHAR2(200),
+    CONSTRAINT ansrpt_ans_no_mem_no_pk PRIMARY KEY (ans_no, mem_no),
+    CONSTRAINT ansrpt_ans_no_fk FOREIGN KEY (ans_no) REFERENCES answer (ans_no),
+    CONSTRAINT ansrpt_mem_no_fk FOREIGN KEY (mem_no) REFERENCES member (mem_no));
+
+----------------------------------
+--文章分類TABLE創建
+----------------------------------
+CREATE TABLE article_classification (
+    artc_no          VARCHAR2(4) NOT NULL,
+    artc_name        VARCHAR2(50) NOT NULL,
+
+    CONSTRAINT artc_no_pk PRIMARY KEY (artc_no));
+
+CREATE SEQUENCE artc_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+----------------------------------
+--文章TABLE創建
+----------------------------------
+CREATE TABLE article (
+    art_no           VARCHAR2(8) NOT NULL,
+    mem_no           VARCHAR2(8) NOT NULL,
+    artc_no          VARCHAR2(4) NOT NULL,
+    art_title        VARCHAR2(90) NOT NULL,
+    art_date         TIMESTAMP NOT NULL,
+    art_cnt          CLOB NOT NULL,
+    art_vcnt         NUMBER(5) NOT NULL,
+    CONSTRAINT art_no_pk PRIMARY KEY (art_no),
+    CONSTRAINT art_mem_no_fk FOREIGN KEY (mem_no) REFERENCES member (mem_no),
+    CONSTRAINT art_artc_no_fk FOREIGN KEY (artc_no) REFERENCES article_classification (artc_no));
+
+CREATE SEQUENCE art_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+----------------------------------
+--文章留言TABLE創建
+----------------------------------
+CREATE TABLE article_message (
+    amsg_no          VARCHAR2(8) NOT NULL,
+    art_no           VARCHAR2(8) NOT NULL,
+    mem_no           VARCHAR2(8) NOT NULL,
+    amsg_date        TIMESTAMP NOT NULL,
+    amsg_cnt         VARCHAR2(600) NOT NULL,
+    CONSTRAINT amsg_no_pk PRIMARY KEY (amsg_no),
+    CONSTRAINT amsg_art_no_fk FOREIGN KEY (art_no) REFERENCES article (art_no),
+    CONSTRAINT amsg_mem_no_fk FOREIGN KEY (mem_no) REFERENCES member (mem_no));
+
+CREATE SEQUENCE amsg_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+----------------------------------
+--文章留言檢舉TABLE創建
+----------------------------------
+CREATE TABLE article_message_report (
+    amsg_no          VARCHAR2(8) NOT NULL,
+    mem_no           VARCHAR2(8) NOT NULL,
+    amrpt_date       TIMESTAMP NOT NULL,
+    amrpt_rsn        VARCHAR2(200) NOT NULL,
+    amrpt_is_cert    CHAR(1) NOT NULL,
+    amrpt_unrsn      VARCHAR2(200),
+    CONSTRAINT amrpt_amsg_no_mem_no_pk PRIMARY KEY (amsg_no, mem_no),
+    CONSTRAINT amrpt_amsg_no_fk FOREIGN KEY (amsg_no) REFERENCES article_message (amsg_no),
+    CONSTRAINT amrpt_mem_no_fk FOREIGN KEY (mem_no) REFERENCES member (mem_no));
+
+----------------------------------
+--關注文章TABLE創建
+----------------------------------
+CREATE TABLE article_favorite (
+    mem_no           VARCHAR2(8) NOT NULL,
+    art_no           VARCHAR2(8) NOT NULL,
+    CONSTRAINT artf_mem_no_art_no_pk PRIMARY KEY (mem_no, art_no),
+    CONSTRAINT artf_mem_no_fk FOREIGN KEY (mem_no) REFERENCES member (mem_no),
+    CONSTRAINT artf_art_no_fk FOREIGN KEY (art_no) REFERENCES article (art_no));
+
+----------------------------------
+--關注作者TABLE創建
+----------------------------------
+CREATE TABLE expert_favorite (
+    mem_no_s         VARCHAR2(8) NOT NULL,
+    mem_no_e         VARCHAR2(8) NOT NULL,
+    CONSTRAINT expf_mem_no_s_mem_no_e_pk PRIMARY KEY (mem_no_s, mem_no_e),
+    CONSTRAINT expf_mem_no_s_fk FOREIGN KEY (mem_no_s) REFERENCES member (mem_no),
+    CONSTRAINT expf_art_no_e_fk FOREIGN KEY (mem_no_e) REFERENCES member (mem_no));
+
+----------------------------------
+--好友TABLE創建
+----------------------------------
+CREATE TABLE chat_friend (
+    cf_no            VARCHAR2(8) NOT NULL,
+    mem_no_s         VARCHAR2(8) NOT NULL,
+    mem_no_o         VARCHAR2(8) NOT NULL,
+    cf_is_del        CHAR(1) NOT NULL,
+    CONSTRAINT cf_no_pk PRIMARY KEY (cf_no),
+    CONSTRAINT cf_mem_no_s_fk FOREIGN KEY (mem_no_s) REFERENCES member (mem_no),
+    CONSTRAINT cf_mem_no_o_fk FOREIGN KEY (mem_no_o) REFERENCES member (mem_no));
+
+CREATE SEQUENCE cf_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+----------------------------------
+--群組TABLE創建
+----------------------------------
+CREATE TABLE chat_group (
+    cg_no           VARCHAR2(8) NOT NULL,
+    cg_name         VARCHAR2(60) NOT NULL,
+    cg_year         DATE NOT NULL,
+    cg_is_ar        CHAR(1) NOT NULL,
+    cg_is_ab        CHAR(1) NOT NULL,
+    cg_is_ac        CHAR(1) NOT NULL,
+    cg_is_sf        CHAR(1) NOT NULL,
+    cg_is_ad        CHAR(1) NOT NULL,
+    cg_baby_rd      VARCHAR2(30),
+    CONSTRAINT cg_no_pk PRIMARY KEY (cg_no));
+
+CREATE SEQUENCE cg_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+----------------------------------
+--群組資料細項TABLE創建
+----------------------------------
+CREATE TABLE chat_group_item (
+    cg_no           VARCHAR2(8) NOT NULL,
+    mem_no          VARCHAR2(8) NOT NULL,
+    CONSTRAINT cgi_cg_no_mem_no_pk PRIMARY KEY (cg_no, mem_no),
+    CONSTRAINT cgi_cg_no_fk FOREIGN KEY (cg_no) REFERENCES chat_group (cg_no),
+    CONSTRAINT cgi_mem_no_fk FOREIGN KEY (mem_no) REFERENCES member (mem_no));
+
+----------------------------------
+--記事本TABLE創建
+----------------------------------
+CREATE TABLE chat_notebook (
+    cnb_no          VARCHAR2(8) NOT NULL,
+    cf_no           VARCHAR2(8),
+    cg_no           VARCHAR2(8),
+    cnb_cnt         CLOB NOT NULL,
+    CONSTRAINT cnb_no_pk PRIMARY KEY (cnb_no),
+    CONSTRAINT cnb_cf_no_fk FOREIGN KEY (cf_no) REFERENCES chat_friend (cf_no),
+    CONSTRAINT cnb_cg_no_fk FOREIGN KEY (cg_no) REFERENCES chat_group (cg_no));
+
+CREATE SEQUENCE cnb_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+----------------------------------
+--聊天記錄TABLE創建
+----------------------------------
+CREATE TABLE chat_record (
+    cr_no           VARCHAR2(8) NOT NULL,
+    cf_no           VARCHAR2(8),
+    cg_no           VARCHAR2(8),
+    cr_date         DATE NOT NULL,
+    cr_cnt          CLOB NOT NULL,
+    CONSTRAINT cr_no_pk PRIMARY KEY (cr_no),
+    CONSTRAINT cr_cf_no_fk FOREIGN KEY (cf_no) REFERENCES chat_friend (cf_no),
+    CONSTRAINT cr_cg_no_fk FOREIGN KEY (cg_no) REFERENCES chat_group (cg_no));
+
+CREATE SEQUENCE cr_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+----------------------------------
+--用戶檢舉TABLE創建
+----------------------------------
+CREATE TABLE user_report (
+    mem_no_ed        VARCHAR2(8) NOT NULL,
+    mem_no_ing       VARCHAR2(8) NOT NULL,
+    urpt_cnt         CLOB NOT NULL,
+    urpt_date        TIMESTAMP NOT NULL,
+    urpt_rsn         VARCHAR2(200) NOT NULL,
+    urpt_is_cert     CHAR(1) NOT NULL,
+    urpt_unrsn       VARCHAR2(200),
+    CONSTRAINT urpt_mem_no_ed_mem_no_ing_pk PRIMARY KEY (mem_no_ed, mem_no_ing),
+    CONSTRAINT urpt_mem_no_ed_fk FOREIGN KEY (mem_no_ed) REFERENCES member (mem_no),
+    CONSTRAINT urpt_mem_no_ing_fk FOREIGN KEY (mem_no_ing) REFERENCES member (mem_no));
+
+----------------------------------
+--地圖機構TABLE創建 	(map_photo BLOB的NOT NULL，暫時拿掉)
+----------------------------------
+CREATE TABLE map_mechanism (
+    map_no           VARCHAR2(8) NOT NULL,
+    mem_no           VARCHAR2(8),
+    mapc_no          CHAR(1),
+    map_name         VARCHAR2(90) NOT NULL,
+    map_adds         VARCHAR2(30) NOT NULL,
+    map_addc         VARCHAR2(200) NOT NULL,
+    map_long         NUMBER(30,27) NOT NULL,
+    map_lat          NUMBER(30,27) NOT NULL,
+    map_phone        VARCHAR2(30) NOT NULL,
+    map_mail         VARCHAR2(90),
+    map_cnt          VARCHAR2(800) NOT NULL,
+    map_photo        BLOB ,
+    map_photo1       BLOB,
+    map_photo2       BLOB,
+    map_photo3       BLOB,
+    map_photo4       BLOB,
+    map_photo5       BLOB,
+    CONSTRAINT map_no_pk PRIMARY KEY (map_no),
+    CONSTRAINT map_mem_no_fk FOREIGN KEY (mem_no) REFERENCES member (mem_no));
+
+CREATE SEQUENCE map_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+----------------------------------
+--地圖機構評論TABLE創建
+----------------------------------
+CREATE TABLE map_comment (
+    mcmt_no          VARCHAR2(8) NOT NULL,
+    mem_no           VARCHAR2(8) NOT NULL,
+    map_no           VARCHAR2(8) NOT NULL,
+    mcmt_date        TIMESTAMP NOT NULL,
+    mcmt_cnt         CLOB NOT NULL,
+    CONSTRAINT mcmt_no_pk PRIMARY KEY (mcmt_no),
+    CONSTRAINT mcmt_mem_no_fk FOREIGN KEY (mem_no) REFERENCES member (mem_no),
+    CONSTRAINT mcmt_map_no_fk FOREIGN KEY (map_no) REFERENCES map_mechanism (map_no));
+
+CREATE SEQUENCE mcmt_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+----------------------------------
+--商品分類TABLE創建
+----------------------------------
+CREATE TABLE product_classification (
+    proc_no          VARCHAR2(4) NOT NULL,
+    proc_name        VARCHAR2(50) NOT NULL,
+
+    CONSTRAINT proc_no_pk PRIMARY KEY (proc_no));
+
+CREATE SEQUENCE proc_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+
+----------------------------------
+--商品TABLE創建      (pro_photo BLOB的NOT NULL，暫時拿掉)
+----------------------------------
+CREATE TABLE product (
+    pro_no           VARCHAR2(8) NOT NULL,
+    mem_no           VARCHAR2(8) NOT NULL,
+    proc_no          VARCHAR2(4) NOT NULL,
+    pro_date         TIMESTAMP NOT NULL,
+    pro_name         VARCHAR2(90) NOT NULL,
+    pro_price        NUMBER(6) NOT NULL,
+    pro_intro        CLOB NOT NULL,
+    pro_photo        BLOB ,
+    pro_photo1       BLOB,
+    pro_photo2       BLOB,
+    pro_photo3       BLOB,
+    pro_photo4       BLOB,
+    pro_photo5       BLOB,
+    pro_stat         CHAR(1) NOT NULL,
+    pro_pay          CHAR(1) NOT NULL,
+    pro_get          CHAR(1) NOT NULL,
+    CONSTRAINT pro_no_pk PRIMARY KEY (pro_no),
+    CONSTRAINT pro_mem_no_fk FOREIGN KEY (mem_no) REFERENCES member (mem_no),
+    CONSTRAINT pro_proc_no_fk FOREIGN KEY (proc_no) REFERENCES product_classification (proc_no));
+
+CREATE SEQUENCE pro_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+----------------------------------
+--商品訂單TABLE創建
+----------------------------------
+CREATE TABLE orderlist (
+    ord_no           VARCHAR2(8) NOT NULL,
+    pro_no           VARCHAR2(8) NOT NULL,
+    mem_no           VARCHAR2(8) NOT NULL,
+    ord_amt          NUMBER(6) NOT NULL,
+    ord_startd       TIMESTAMP NOT NULL,
+    ord_endd         TIMESTAMP,
+    ord_payd         TIMESTAMP,
+    ord_getadd       VARCHAR2(200) NOT NULL,
+    CONSTRAINT ord_no_pk PRIMARY KEY (ord_no),
+    CONSTRAINT ord_pro_no_fk FOREIGN KEY (pro_no) REFERENCES product (pro_no),
+    CONSTRAINT ord_mem_no_fk FOREIGN KEY (mem_no) REFERENCES member (mem_no));
+
+CREATE SEQUENCE ord_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+----------------------------------
+--買家檢舉TABLE創建
+----------------------------------
+CREATE TABLE buyer_report (
+    ord_no           VARCHAR2(8) NOT NULL,
+    mem_no           VARCHAR2(8) NOT NULL,
+    buyrpt_date      TIMESTAMP NOT NULL,
+    buyrpt_rsn       VARCHAR2(200) NOT NULL,
+    buyrpt_is_cert   CHAR(1) NOT NULL,
+    buyrpt_unrsn     VARCHAR2(200),
+    CONSTRAINT buyrpt_ord_no_mem_no_pk PRIMARY KEY (ord_no, mem_no),
+    CONSTRAINT buyrpt_ord_no_fk FOREIGN KEY (ord_no) REFERENCES orderlist (ord_no),
+    CONSTRAINT buyrpt_mem_no_fk FOREIGN KEY (mem_no) REFERENCES member (mem_no));
+
+----------------------------------
+--商品檢舉TABLE創建
+----------------------------------
+CREATE TABLE product_report (
+    pro_no           VARCHAR2(8) NOT NULL,
+    mem_no           VARCHAR2(8) NOT NULL,
+    prorpt_date      TIMESTAMP NOT NULL,
+    prorpt_rsn       VARCHAR2(200) NOT NULL,
+    prorpt_is_cert   CHAR(1) NOT NULL,
+    prorpt_unrsn     VARCHAR2(200),
+    CONSTRAINT prorpt_pro_no_mem_no_pk PRIMARY KEY (pro_no, mem_no),
+    CONSTRAINT prorpt_pro_no_fk FOREIGN KEY (pro_no) REFERENCES product (pro_no),
+    CONSTRAINT prorpt_mem_no_fk FOREIGN KEY (mem_no) REFERENCES member (mem_no));
+
+
+----------------------------------
+--商品留言TABLE創建
+----------------------------------
+CREATE TABLE product_message (
+    pmsg_no          VARCHAR2(8) NOT NULL,
+    pro_no           VARCHAR2(8) NOT NULL,
+    mem_no           VARCHAR2(8) NOT NULL,
+    pmsg_date        TIMESTAMP NOT NULL,
+    pmsg_cnt         VARCHAR2(600) NOT NULL,
+    pmsg_is_hide     CHAR(1) NOT NULL,
+    CONSTRAINT pmsg_no_pk PRIMARY KEY (pmsg_no),
+    CONSTRAINT pmsg_pro_no_fk FOREIGN KEY (pro_no) REFERENCES product (pro_no),
+    CONSTRAINT pmsg_mem_no_fk FOREIGN KEY (mem_no) REFERENCES member (mem_no));
+
+CREATE SEQUENCE pmsg_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+----------------------------------
+--商品留言檢舉TABLE創建
+----------------------------------
+CREATE TABLE product_message_report (
+    pmsg_no          VARCHAR2(8) NOT NULL,
+    mem_no           VARCHAR2(8) NOT NULL,
+    pmrpt_date       TIMESTAMP NOT NULL,
+    pmrpt_rsn        VARCHAR2(200) NOT NULL,
+    pmrpt_is_cert    CHAR(1) NOT NULL,
+    pmrpt_unrsn      VARCHAR2(200),
+    CONSTRAINT pmrpt_pmsg_no_mem_no_pk PRIMARY KEY (pmsg_no, mem_no),
+    CONSTRAINT pmrpt_pmsg_no_fk FOREIGN KEY (pmsg_no) REFERENCES product_message (pmsg_no),
+    CONSTRAINT pmrpt_mem_no_fk FOREIGN KEY (mem_no) REFERENCES member (mem_no));
+
+----------------------------------
+--賣家評分TABLE創建
+----------------------------------
+CREATE TABLE seller_rating (
+    pro_no           VARCHAR2(8) NOT NULL,
+    mem_no           VARCHAR2(8) NOT NULL,
+    sell_rating      NUMBER(1) NOT NULL,
+    CONSTRAINT sellrat_pro_no_mem_no_pk PRIMARY KEY (pro_no, mem_no),
+    CONSTRAINT sellrat_pro_no_fk FOREIGN KEY (pro_no) REFERENCES product (pro_no),
+    CONSTRAINT sellrat_mem_no_fk FOREIGN KEY (mem_no) REFERENCES member (mem_no)); 
+
+----------------------------------
+--賣家檢舉TABLE創建
+----------------------------------
+CREATE TABLE seller_report (
+    pro_no           VARCHAR2(8) NOT NULL,
+    mem_no           VARCHAR2(8) NOT NULL,
+    sellrpt_date     TIMESTAMP NOT NULL,
+    sellrpt_rsn      VARCHAR2(200) NOT NULL,
+    sellrpt_is_cert  CHAR(1) NOT NULL,
+    sellrpt_unrsn    VARCHAR2(200),
+    CONSTRAINT sellrpt_pro_no_mem_no_pk PRIMARY KEY (pro_no, mem_no),
+    CONSTRAINT sellrpt_pro_no_fk FOREIGN KEY (pro_no) REFERENCES product (pro_no),
+    CONSTRAINT sellrpt_mem_no_fk FOREIGN KEY (mem_no) REFERENCES member (mem_no));
+
+----------------------------------
+--管理員TABLE創建
+----------------------------------
+CREATE TABLE admin (
+    adm_no           VARCHAR2(8) NOT NULL,
+    adm_acct         VARCHAR2(20) NOT NULL,
+    adm_pwd          VARCHAR2(20) NOT NULL,
+    adm_name         VARCHAR2(30) NOT NULL,
+    adm_mail         VARCHAR2(60) NOT NULL,
+    CONSTRAINT adm_no_pk PRIMARY KEY (adm_no));
+
+CREATE SEQUENCE adm_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+----------------------------------
+--權限功能TABLE創建
+----------------------------------
+CREATE TABLE authority_feature (
+    auth_no          VARCHAR2(4) NOT NULL,
+    auth_name        VARCHAR2(50) NOT NULL,
+
+    CONSTRAINT auth_no_pk PRIMARY KEY (auth_no));
+
+CREATE SEQUENCE auth_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+----------------------------------
+--管理員權限TABLE創建
+----------------------------------
+CREATE TABLE admin_authority (
+    adm_no          VARCHAR2(8) NOT NULL,
+    auth_no         VARCHAR2(4) NOT NULL,
+    CONSTRAINT admauth_adm_no_auth_no_pk PRIMARY KEY (adm_no, auth_no),
+    CONSTRAINT admauth_adm_no_fk FOREIGN KEY (adm_no) REFERENCES admin (adm_no),
+    CONSTRAINT admauth_auth_no_fk FOREIGN KEY (auth_no) REFERENCES authority_feature (auth_no));
+
+----------------------------------
+--最新消息TABLE創建
+----------------------------------
+CREATE TABLE news (
+    new_no           VARCHAR2(8) NOT NULL,
+    new_date         TIMESTAMP NOT NULL,
+    new_title        VARCHAR2(90) NOT NULL,
+    new_cnt          CLOB NOT NULL,
+    CONSTRAINT new_no_pk PRIMARY KEY (new_no));
+
+CREATE SEQUENCE new_no_seq
+    INCREMENT BY 1
+    START WITH 1
+    NOMAXVALUE
+    NOCACHE
+    NOCYCLE;
+
+COMMIT;

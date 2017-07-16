@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.chat.model.Chat_GroupVO" table="chat_group" >
+        
+        <id name="cg_no" column="cg_no">
+            <generator class="sequence" >
+              <param name="sequence">cg_no_seq</param>
+            </generator>  
+        </id>
+
+        <property name="cg_name" column="cg_name" />
+        <property name="cg_year" column="cg_year" />
+        <property name="cg_is_ar" column="cg_is_ar" />
+        <property name="cg_is_ab" column="cg_is_ab" />
+        <property name="cg_is_ac" column="cg_is_ac" />
+        <property name="cg_is_sf" column="cg_is_sf" />
+        <property name="cg_is_ad" column="cg_is_ad" />
+        <property name="cg_baby_rd" column="cg_baby_rd" />
+
+        <set name="cg_no" table="chat_notebook" lazy="false" cascade="all"  inverse="true"  order-by="cnb_no asc">
+            <key>
+                <column name="cg_no" />
+            </key>
+            <one-to-many class="com.chat.model.Chat_NotebookVO" />
+        </set>
+        
+    </class>
+</hibernate-mapping>
+

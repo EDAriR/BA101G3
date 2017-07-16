@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017/7/13 ?W?? 02:41:10 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.backend.model.QuestionClassification" table="QUESTION_CLASSIFICATION" schema="BA101G3">
+        <id name="quecNo" type="string">
+            <column name="QUEC_NO" length="4" />
+            <generator class="assigned" />
+        </id>
+        <property name="quecName" type="string">
+            <column name="QUEC_NAME" length="50" not-null="true" />
+        </property>
+        <set name="questions" table="QUESTION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="QUEC_NO" length="4" not-null="true" />
+            </key>
+            <one-to-many class="com.backend.model.Question" />
+        </set>
+    </class>
+</hibernate-mapping>

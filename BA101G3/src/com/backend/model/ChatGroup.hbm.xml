@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017/7/13 ?W?? 02:41:10 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.backend.model.ChatGroup" table="CHAT_GROUP" schema="BA101G3">
+        <id name="cgNo" type="string">
+            <column name="CG_NO" length="8" />
+            <generator class="assigned" />
+        </id>
+        <property name="cgName" type="string">
+            <column name="CG_NAME" length="60" not-null="true" />
+        </property>
+        <property name="cgYear" type="date">
+            <column name="CG_YEAR" length="7" not-null="true" />
+        </property>
+        <property name="cgIsAr" type="char">
+            <column name="CG_IS_AR" length="1" not-null="true" />
+        </property>
+        <property name="cgIsAb" type="char">
+            <column name="CG_IS_AB" length="1" not-null="true" />
+        </property>
+        <property name="cgIsAc" type="char">
+            <column name="CG_IS_AC" length="1" not-null="true" />
+        </property>
+        <property name="cgIsSf" type="char">
+            <column name="CG_IS_SF" length="1" not-null="true" />
+        </property>
+        <property name="cgIsAd" type="char">
+            <column name="CG_IS_AD" length="1" not-null="true" />
+        </property>
+        <property name="cgBabyRd" type="string">
+            <column name="CG_BABY_RD" length="30" />
+        </property>
+    </class>
+</hibernate-mapping>
