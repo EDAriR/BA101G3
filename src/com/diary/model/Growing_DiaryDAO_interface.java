@@ -9,7 +9,7 @@ public interface Growing_DiaryDAO_interface {
 
 	public void delete(String gd_no);
 
-	public Growing_DiaryVO findByPrimary(String gd_no);
+	public Growing_DiaryVO findByPrimaryKey(String gd_no);
 
 	public List<Growing_DiaryVO> getAll();
 }

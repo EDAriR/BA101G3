@@ -7,17 +7,16 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class PhotoDAO implements PhotoDAO_interface {
-    // 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
+
     private static DataSource ds = null;
 
     static {
@@ -30,11 +29,16 @@ public class PhotoDAO implements PhotoDAO_interface {
     }
 
     private static final String INSERT_STMT =
-            "INSERT INTO photo (pho_no, baby_no, pho_title, pho_date, pho_annot, pho_file, pho_shr) VALUES ('PHO'||LPAD(to_char(pho_no_seq.NEXTVAL), 5, '0'), ?, ?, SYSDATE, ?, ?, ?)";
+            "INSERT INTO photo (pho_no, baby_no, pho_title, pho_date, pho_annot, pho_file, pho_shr) " +
+                    "VALUES ('PHO'||LPAD(to_char(pho_no_seq.NEXTVAL), 5, '0'), ?, ?, SYSDATE, ?, ?, ?)";
     private static final String GET_ALL_STMT =
-            "SELECT * FROM photo";
+            "SELECT * FROM photo ORDER BY pho_date DESC";
     private static final String GET_ONE_STMT =
             "SELECT * FROM photo WHERE pho_no = ?";
+    private static final String GET_BABY_STMT =
+            "SELECT * FROM photo WHERE baby_no = ? ORDER BY pho_date DESC";
+    private static final String UPDATE_STMT =
+            "UPDATE photo SET baby_no=?, pho_title=?, pho_annot=?, pho_shr=? WHERE pho_no = ?";
     private static final String DELETE_PHOTO = "DELETE FROM photo WHERE pho_no = ?";
 
 
@@ -77,6 +81,50 @@ public class PhotoDAO implements PhotoDAO_interface {
             }
         }
     }
+
+
+    @Override
+    public void update(PhotoVO photoVO) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+
+            con = ds.getConnection();
+            pstmt = con.prepareStatement(UPDATE_STMT);
+
+            pstmt.setString(1, photoVO.getBaby_no());
+            pstmt.setString(2, photoVO.getPho_title());
+            pstmt.setString(3, photoVO.getPho_annot());
+            pstmt.setString(4, photoVO.getPho_shr());
+            System.out.println("photoVO in DAO: " + photoVO.getPho_shr() + photoVO.getBaby_no());
+
+            pstmt.setString(5, photoVO.getPho_no());
+
+            pstmt.executeUpdate();
+
+            // Handle any SQL errors
+        } catch (SQLException se) {
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+            // Clean up JDBC resources
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+    }
+
 
     @Override
     public void delete(String pho_no) {
@@ -131,7 +179,7 @@ public class PhotoDAO implements PhotoDAO_interface {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                // empVo 也稱為 Domain objects
+
                 photoVO = new PhotoVO();
                 photoVO.setPho_no(rs.getString("pho_no"));
                 photoVO.setBaby_no(rs.getString("baby_no"));
@@ -173,6 +221,66 @@ public class PhotoDAO implements PhotoDAO_interface {
     }
 
     @Override
+    public List<PhotoVO> findBybaby(String baby_no) {
+
+        List<PhotoVO> list = new ArrayList<PhotoVO>();
+        PhotoVO photoVO = null;
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+
+            con = ds.getConnection();
+            pstmt = con.prepareStatement(GET_BABY_STMT);
+
+            pstmt.setString(1, baby_no);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+
+                photoVO = new PhotoVO();
+                photoVO.setPho_no(rs.getString("pho_no"));
+                photoVO.setBaby_no(rs.getString("baby_no"));
+                photoVO.setPho_title(rs.getString("pho_title"));
+                photoVO.setPho_date(rs.getTimestamp("pho_date"));
+                photoVO.setPho_annot(rs.getString("pho_annot"));
+                photoVO.setPho_file(rs.getBytes("pho_file"));
+                photoVO.setPho_shr(rs.getString("pho_shr"));
+                list.add(photoVO);
+            }
+            // Handle any SQL errors
+        } catch (SQLException se) {
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+            // Clean up JDBC resources
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+        return list;
+    }
+
+    @Override
     public List<PhotoVO> getAll() {
         List<PhotoVO> list = new ArrayList<PhotoVO>();
         PhotoVO photoVO = null;
@@ -187,7 +295,7 @@ public class PhotoDAO implements PhotoDAO_interface {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                // empVo 也稱為 Domain objects
+
                 photoVO = new PhotoVO();
                 photoVO.setPho_no(rs.getString("pho_no"));
                 photoVO.setBaby_no(rs.getString("baby_no"));

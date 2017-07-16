@@ -29,7 +29,6 @@ DROP TABLE answer_report;
 DROP TABLE answer;
 DROP TABLE question;
 DROP TABLE question_classification;
-DROP TABLE accounting;
 DROP TABLE voice_diary;
 DROP TABLE video;
 DROP TABLE photo;
@@ -60,7 +59,6 @@ DROP SEQUENCE artc_no_seq;
 DROP SEQUENCE ans_no_seq;
 DROP SEQUENCE qu_no_seq;
 DROP SEQUENCE quec_no_seq;
-DROP SEQUENCE acct_no_seq;
 DROP SEQUENCE vd_no_seq;
 DROP SEQUENCE vid_no_seq;
 DROP SEQUENCE pho_no_seq;
@@ -100,6 +98,7 @@ CREATE TABLE member (
     mem_updated	     DATE,
     mem_name	     VARCHAR2(30) NOT NULL,
     mem_aka	         VARCHAR2(30),
+    mem_photo        BLOB,
     mem_adds	     VARCHAR2(30) NOT NULL,
     mem_addc	     VARCHAR2(200),
     mem_phone	     VARCHAR2(20),
@@ -277,27 +276,6 @@ CREATE TABLE voice_diary (
     CONSTRAINT vd_baby_no_fk FOREIGN KEY (baby_no) REFERENCES baby (baby_no));
 
 CREATE SEQUENCE vd_no_seq
-    INCREMENT BY 1
-    START WITH 1
-    NOMAXVALUE
-    NOCACHE
-    NOCYCLE;
-
-----------------------------------
---記帳資料TABLE創建
-----------------------------------
-CREATE TABLE accounting (
-    acct_no          VARCHAR2(8) NOT NULL,
-    mem_no           VARCHAR2(8) NOT NULL,
-    acct_date        DATE NOT NULL,
-    acct_exp         DATE,
-    acct_obj         VARCHAR2(90) NOT NULL,
-    acct_annot       VARCHAR2(200),
-    acct_up          NUMBER(6) NOT NULL,
-    CONSTRAINT acct_no_pk PRIMARY KEY (acct_no),
-    CONSTRAINT acct_mem_no_fk FOREIGN KEY (mem_no) REFERENCES member (mem_no));
-
-CREATE SEQUENCE acct_no_seq
     INCREMENT BY 1
     START WITH 1
     NOMAXVALUE

@@ -13,6 +13,8 @@ public interface AdminDAO_interface {
 
     public AdminVO findByPrimaryKey(String adm_no);
 
+    AdminVO findByAdmAcct(String adm_acct);
+
     public List<AdminVO> getAll();
 
 }

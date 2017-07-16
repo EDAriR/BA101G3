@@ -1,13 +1,15 @@
 package com.admin.model;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Authority_FeatureDAO implements Authority_FeatureDAO_interface {
 	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可

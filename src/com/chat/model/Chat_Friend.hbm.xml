@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.chat.model.Chat_FriendVO" table="chat_friend" >
+        
+        <id name="cf_no" column="cf_no">
+            <generator class="sequence" >
+              <param name="sequence">cf_no_seq</param>
+            </generator>  
+        </id>
+        
+        <property name="mem_no_s" column="mem_no_s" />
+        <property name="mem_no_o" column="mem_no_o" />
+        <property name="cf_is_del" column="cf_is_del" />
+
+        <many-to-one name="mem_no_o" class="com.member.model.MemberVO" lazy="false">
+            <column name="mem_no" />
+        </many-to-one>
+        
+    </class>
+</hibernate-mapping>
+

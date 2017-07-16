@@ -248,7 +248,7 @@ public class Chat_RecordJDBCDAO implements Chat_RecordDAO_interface {
 
         Chat_RecordJDBCDAO dao = new Chat_RecordJDBCDAO();
 
-        // 新增 
+        // 新增
 //        Chat_RecordVO chat_recordVO1 = new Chat_RecordVO();
 //        chat_recordVO1.setCf_no("CF000004");
 //        chat_recordVO1.setCr_cnt("聊天記錄測試*");

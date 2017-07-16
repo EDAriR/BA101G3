@@ -28,9 +28,9 @@ public class Map_MechanismDAO implements Map_MechanismDAO_interface {
 			"INSERT INTO map_mechanism (map_no, mem_no, mapc_no, map_name, map_adds, map_addc, map_long, map_lat, map_phone, map_mail, map_cnt, map_photo, map_photo1, map_photo2, map_photo3, map_photo4, map_photo5) VALUES ('MAP'||LPAD(to_char(map_no_seq.NEXTVAL), 5, '0'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	// 查詢資料
 	private static final String GET_ALL_STMT =
-			"SELECT * FROM map_mechanism";
+			"SELECT * FROM map_mechanism ORDER BY map_no DESC";
 	private static final String GET_ONE_STMT =
-			"SELECT * FROM map_mechanism where map_no = ?";
+			"SELECT * FROM map_mechanism where map_no = ? ORDER BY map_no DESC";
 	// 刪除資料
 	private static final String DELETE_MAP_COMMENTs =
 			"DELETE FROM map_comment where map_no = ?";

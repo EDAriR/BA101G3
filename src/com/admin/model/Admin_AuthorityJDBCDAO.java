@@ -5,17 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 public class Admin_AuthorityJDBCDAO implements Admin_AuthorityDAO_interface {
 	private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
 	private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
 	private static final String USER = "ba101g3";
 	private static final String PASSWORD = "baby";
-    // 新增資料
+	// 新增資料
     private static final String INSERT_STMT = "INSERT INTO admin_authority (adm_no, auth_no) VALUES (?, ?)";
     // 查詢資料
     private static final String GET_ALL_STMT = "SELECT * FROM admin_authority";
     private static final String GET_BY_ADM_NO_STMT = "SELECT * FROM admin_authority WHERE adm_no = ?";
+    private static final String GET_BY_AUTH_NO = "SELECT * FROM admin_authority WHERE auth_no = ?";
+    private static final String GET_BY_PK = "SELECT * FROM admin_authority WHERE adm_no = ? AND auth_no = ?";
     // 刪除資料
     private static final String DELETE_ADMIN_AUTHORITY = "DELETE FROM admin_authority WHERE adm_no = ? AND auth_no = ?";
 
@@ -142,8 +143,6 @@ public class Admin_AuthorityJDBCDAO implements Admin_AuthorityDAO_interface {
 	               admin_authorityVO.setAuth_no(rs.getString("auth_no"));
 	               list.add(admin_authorityVO); // Store the row in the list
 	           }
-
-			
 			// Handle any DRIVER errors
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database DRIVER. "
@@ -178,8 +177,115 @@ public class Admin_AuthorityJDBCDAO implements Admin_AuthorityDAO_interface {
 		}
 		return list;
 	}
-    
-    public List<Admin_AuthorityVO> getAll(){
+    	
+    @Override
+    public List<Admin_AuthorityVO> findByAuthNo(String auth_no) {
+
+        
+
+        List<Admin_AuthorityVO> list = new ArrayList<Admin_AuthorityVO>();
+        Admin_AuthorityVO admin_authorityVO = null;
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+
+        	Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			pstmt = con.prepareStatement(GET_BY_AUTH_NO);
+            pstmt.setString(1, auth_no);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                admin_authorityVO = new Admin_AuthorityVO();
+                admin_authorityVO.setAdm_no(rs.getString("adm_no"));
+                admin_authorityVO.setAuth_no(rs.getString("auth_no"));
+                list.add(admin_authorityVO); // Store the row in the list
+            }
+            // Handle any SQL errors
+        } catch (Exception se) {
+            throw new RuntimeException("A database error occured. " + se.getMessage());
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public Admin_AuthorityVO findByPrimaryKey(String adm_no, String auth_no) {
+    	
+    	Admin_AuthorityVO admin_authorityVO = null;
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+
+        	Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			pstmt = con.prepareStatement(GET_BY_PK);
+
+            pstmt.setString(1, adm_no);
+            pstmt.setString(2, auth_no);
+
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                admin_authorityVO = new Admin_AuthorityVO();
+                admin_authorityVO.setAdm_no(rs.getString("adm_no"));
+                admin_authorityVO.setAuth_no(rs.getString("auth_no"));
+            }
+            // Handle any SQL errors
+        } catch (Exception se) {
+            throw new RuntimeException("A database error occured. " + se.getMessage());
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+        return admin_authorityVO;
+    }
+
+	public List<Admin_AuthorityVO> getAll(){
 
         List<Admin_AuthorityVO> list = new ArrayList<Admin_AuthorityVO>();
         Admin_AuthorityVO admin_authorityVO = null;
@@ -268,4 +374,5 @@ public class Admin_AuthorityJDBCDAO implements Admin_AuthorityDAO_interface {
 //		}
 
     }
+	
 }

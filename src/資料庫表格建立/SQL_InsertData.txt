@@ -1,4 +1,4 @@
-
+﻿
 
 ----------------------------------
 --專家分類INSERT資料
@@ -19,21 +19,21 @@ INSERT INTO expert_classification VALUES('E'||LPAD(to_char(exp_no_seq.NEXTVAL), 
 ----------------------------------
 
 
-INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), null, '0', 'timmy0212', '12345', SYSDATE, null, '何小軒', null, '新北市中和區', null, null, null, null, '0', null, null, null, null, '0', null);
-INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), null, '0', 'tiger0324', '12345', SYSDATE, null, '何小胖', '小胖', '桃園市大園區', null, null, null, null, '0', null, null, null, null, '0', null);
-INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), null, '1', 'lion0112', '12345', SYSDATE, null, '楊把拔', '把拔', '新竹市竹北區', null, null, null, null, '0', null, null, null, null, '0', null);
-INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), null, '1', 'apple923', '12345', SYSDATE, null, '邱小竣', '竣竣', '高雄市鳳山區', null, null, null, null, '0', null, null, null, null, '0', null);
-INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), 'E001', '2', 'baby880', '12345', SYSDATE, null, '高小強', '仁皓', '台北市北投區', null, null, null, null, '0', null, null, null, null, '0', null);
-INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), 'E002', '2', 'siyel123', '12345', SYSDATE, null, '戴偉偉', '偉偉', '新竹市湖口區', null, null, null, null, '1', '81729649812736', null, null, null, '0', null);
-INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), 'E005', '2', 'candy572', '12345', SYSDATE, null, '王小傑', '王老師', '高雄市左營區', null, null, null, null, '0', null, null, null, null, '0', null);
-INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), 'E001', '2', 'willch97', '12345', SYSDATE, null, '陳教授', '教授', '桃園市桃園區', null, null, null, null, '0', null, null, null, null, '0', null);
-INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), null, '0', 'whitelooo', '12345', SYSDATE, null, '何小白', '小白', '連江縣', null, null, null, null, '0', null, null, null, null, '0', null);
-INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), null, '1', 'blackeex', '12345', SYSDATE, null, '張小黑', '小黑', '台中市烏日區', null, null, null, null, '1', '7410287528830', null, null, null, '0', null);
-INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), null, '0', 'yellosjj', '12345', SYSDATE, null, '王小濃', '濃濃', '新北市蘆州區', null, null, null, null, '1', '4710928474351', null, null, null, '0', null);
-INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), null, '0', 'redddr', '12345', SYSDATE, null, '薛傑傑', '薛薛', '高雄市左營區', null, null, null, null, '1', '3240975389719820', null, null, null, '0', null);
-INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), null, '0', 'looopppp', '12345', SYSDATE, null, '顏小儒', '儒儒', '新北市新莊區', null, null, null, null, '1', '457817092709733', null, null, null, '0', null);
-INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), 'E001', '2', 'greaann', '12345', SYSDATE, null, '劉大輝', '輝哥', '桃園市中壢區', null, null, null, null, '1', '33348091878274', null, null, null, '0', null);
-INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), 'E003', '2', 'bluueice', '12345', SYSDATE, null, '林緯緯', '緯緯', '雲林縣雲林市', null, null, null, null, '1', '173659810258289000', null, null, null, '0', null);
+INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), null, '0', 'timmy0212', '12345',  SYSDATE, null, '何小軒', null, null, '新北市中和區', null, null, null, null, '0', null, null, null, null, '0', null);
+INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), null, '0', 'tiger0324', '12345',  SYSDATE, null, '何小胖', '小胖', null, '桃園市大園區', null, null, null, null, '0', null, null, null, null, '0', null);
+INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), null, '1', 'lion0112', '12345',   SYSDATE, null, '楊把拔', '把拔', null, '新竹市竹北區', null, null, null, null, '0', null, null, null, null, '0', null);
+INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), null, '1', 'apple923', '12345',   SYSDATE, null, '邱小竣', '竣竣', null, '高雄市鳳山區', null, null, null, null, '0', null, null, null, null, '0', null);
+INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), 'E001', '2', 'baby880', '12345',  SYSDATE, null, '高小強', '仁皓', null, '台北市北投區', null, null, null, null, '0', null, null, null, null, '0', null);
+INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), 'E002', '2', 'siyel123', '12345', SYSDATE, null, '戴偉偉', '偉偉', null, '新竹市湖口區', null, null, null, null, '1', '81729649812736', null, null, null, '0', null);
+INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), 'E005', '2', 'candy572', '12345', SYSDATE, null, '王小傑', '王老師', null, '高雄市左營區', null, null, null, null, '0', null, null, null, null, '0', null);
+INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), 'E001', '2', 'willch97', '12345', SYSDATE, null, '陳教授', '教授', null, '桃園市桃園區', null, null, null, null, '0', null, null, null, null, '0', null);
+INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), null, '0', 'whitelooo', '12345',  SYSDATE, null, '何小白', '小白', null, '連江縣', null, null, null, null, '0', null, null, null, null, '0', null);
+INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), null, '1', 'blackeex', '12345',   SYSDATE, null, '張小黑', '小黑', null, '台中市烏日區', null, null, null, null, '1', '7410287528830', null, null, null, '0', null);
+INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), null, '0', 'yellosjj', '12345',   SYSDATE, null, '王小濃', '濃濃', null, '新北市蘆州區', null, null, null, null, '1', '4710928474351', null, null, null, '0', null);
+INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), null, '0', 'redddr', '12345',     SYSDATE, null, '薛傑傑', '薛薛', null, '高雄市左營區', null, null, null, null, '1', '3240975389719820', null, null, null, '0', null);
+INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), null, '0', 'looopppp', '12345',   SYSDATE, null, '顏小儒', '儒儒', null, '新北市新莊區', null, null, null, null, '1', '457817092709733', null, null, null, '0', null);
+INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), 'E001', '2', 'greaann', '12345',  SYSDATE, null, '劉大輝', '輝哥', null, '桃園市中壢區', null, null, null, null, '1', '33348091878274', null, null, null, '0', null);
+INSERT INTO member VALUES('M'||LPAD(to_char(mem_no_seq.NEXTVAL), 7, '0'), 'E003', '2', 'bluueice', '12345', SYSDATE, null, '林緯緯', '緯緯', null, '雲林縣雲林市', null, null, null, null, '1', '173659810258289000', null, null, null, '0', null);
 
 ----------------------------------
 --嬰兒成長時程INSERT資料
@@ -554,8 +554,8 @@ INSERT INTO baby VALUES('BABY'||LPAD(to_char(baby_no_seq.NEXTVAL), 4, '0'), 'M00
 --成長日誌INSERT資料
 ----------------------------------
 
-INSERT INTO growing_diary VALUES('BABY'||LPAD(to_char(gd_no_seq.NEXTVAL), 4, '0'), 'BABY0001', '第一次自己翻身', '14-5月-17', '我家小米三個月囉....現在俯臥頭可以抬90度..側躺也會翻成仰臥..也會用手支持胸部幫助自己俯臥..也會認媽媽囉..真的超感動的..不管誰抱他他的眼睛都會不自覺找尋媽媽...不枉費我那麼疼他..跟2個月一樣..還是很喜歡跟大人說話...一直 阿姆阿姆的呀呀叫..真的好可愛喔...只是超會流口水..一天都得幫他換2次圍兜兜呢...還有就是超黏人..一起床一定要有人在旁邊陪他..不然便開始哇哇大哭...現在睡覺都會90度大翻身..本來睡覺前都是和我平行睡覺..起床之後都是跟我成90度..2隻小腳腳一直 踢他老媽...尤其是半夜肚子餓的時候...便開始使展他的無影腳..一直 踢..踢到你起床幫他泡奶為止..真奇怪..就是不會把腳往他爸爸那個方向...大概是怕他爸爸修理..更何況他爸爸睡覺時根本不會醒過來..一定一覺到天亮...呵呵...現在的小孩真的很聰明...', '0');
-INSERT INTO growing_diary VALUES('BABY'||LPAD(to_char(gd_no_seq.NEXTVAL), 4, '0'), 'BABY0002', '一直吐口水', '14-3月-17', '每天都一直吐口水，好像螃蟹...
+INSERT INTO growing_diary VALUES('GD'||LPAD(to_char(gd_no_seq.NEXTVAL), 6, '0'), 'BABY0001', '第一次自己翻身', '14-5月-17', '我家小米三個月囉....現在俯臥頭可以抬90度..側躺也會翻成仰臥..也會用手支持胸部幫助自己俯臥..也會認媽媽囉..真的超感動的..不管誰抱他他的眼睛都會不自覺找尋媽媽...不枉費我那麼疼他..跟2個月一樣..還是很喜歡跟大人說話...一直 阿姆阿姆的呀呀叫..真的好可愛喔...只是超會流口水..一天都得幫他換2次圍兜兜呢...還有就是超黏人..一起床一定要有人在旁邊陪他..不然便開始哇哇大哭...現在睡覺都會90度大翻身..本來睡覺前都是和我平行睡覺..起床之後都是跟我成90度..2隻小腳腳一直 踢他老媽...尤其是半夜肚子餓的時候...便開始使展他的無影腳..一直 踢..踢到你起床幫他泡奶為止..真奇怪..就是不會把腳往他爸爸那個方向...大概是怕他爸爸修理..更何況他爸爸睡覺時根本不會醒過來..一定一覺到天亮...呵呵...現在的小孩真的很聰明...', '0');
+INSERT INTO growing_diary VALUES('GD'||LPAD(to_char(gd_no_seq.NEXTVAL), 6, '0'), 'BABY0002', '一直吐口水', '14-3月-17', '每天都一直吐口水，好像螃蟹...
 喜歡別人和她說話,稱讚她就會依ㄧㄚ阿的笑呢~
 但是她很喜歡睡覺,起來喝奶玩一個小時候就又想睡了!
 現在已經一覺到天亮,但有時還叫不起床,有點誇張。', '0');
@@ -1131,6 +1131,173 @@ INSERT INTO article VALUES(('ART'||LPAD(to_char(art_no_seq.NEXTVAL),5,'0')), 'M0
 但這顆小小的膠囊居然還有足量的DHA (200mg) ,
 
 只要乖乖吃一顆就可以滿足一天所需的營養是不是超方便!', 10195);
+
+
+--文章9
+INSERT INTO article VALUES(('ART'||LPAD(to_char(art_no_seq.NEXTVAL),5,'0')), 'M0000005' , 'AC03', '這可不是感冒！是孩子耳鼻口被異物堵塞了！' , CURRENT_TIMESTAMP, '一位媽媽帶著五歲男孩來到阿包醫生的門診，主述是鼻水流了兩星期。問診時媽媽只說男孩這段時間一直流鼻水，但沒有其他明顯的咳嗽、發燒、食慾或精神不佳的狀況。幫男孩做檢查，呼吸音乾淨正常，喉嚨並無明顯發炎，最後檢查到鼻子。
+
+「咦？等等…右邊鼻孔內好像有個奇怪的東西？」接著我拿著鑷子，試探那是什麼東西？在確認是異物之後，小心翼翼地將它夾出，它長度約兩公分，沒想到居然是一張被對折成細長條的貼紙，當時媽媽看到這個鼻腔異物，一臉錯愕又無言，但也因為找到致病原因，男孩的流鼻水就不藥而癒了。
+
+
+孩子發展的過程，喜歡用觸覺去感知這個世界，手一旦拿到任何物品，喜歡往身體有洞的地方塞，如此才能聽到、聞到、或吃到這個東西。而孩子喜歡塞東西這個動作，爸媽其實防不勝防，在此阿包醫生想說明以下三點：
+
+若是東西塞進鼻子
+
+如同上述門診的經歷，一旦人體的鼻腔有異物，我們的鼻子就會利用打噴嚏的方式試圖將異物排出。當發現無法排除異物時，鼻黏膜細胞只好分泌黏液，也就是鼻涕鼻水，讓這個異物不要進一步跑到我們的下呼吸道。不過當異物停留鼻腔太久，除了會一直流鼻水之外，可能會引發細菌感染，造成黏膜受損或出現蓄膿的狀況。此時唯有移除鼻腔異物，才能緩解以上症狀。
+
+當異物不幸往下到下呼吸道時，較大的異物可能就卡在喉部，造成氣道阻塞，孩子直接會有窒息的危險；較小的異物進入氣管後，氣管黏膜細胞一樣會因為異物產生黏液，這時的黏液稱作痰，接下來便開始出現咳嗽症狀，因為要藉由咳嗽將異物從氣管排出。於是孩子這一咳，可能會咳上好一陣子。所以兒科醫師對於慢性咳嗽，除了懷疑感染或氣喘外，一定要去排除呼吸道的異物吸入的可能。再來由於呼吸道越往下越窄，異物越往下跑，越可能造成氣道的阻塞，孩子便會出現喘鳴或是肺葉塌陷的狀況，此時異物已不太能自行排出，處理方法只能用支氣管鏡將異物移除。
+
+若是東西塞進嘴巴
+
+異物被孩子塞進嘴巴後，最常的結果是經過食道進入胃，若不幸跑到下呼吸道，命運就如同上面的描述。一般在消化道內的異物若是鈍形且非腐蝕性，我們會建議爸媽注意孩子接下來幾天的糞便，仔細找找異物有無跟糞便一起排出體外。若異物為尖銳形狀，例如別針、耳環；或是具腐蝕性，例如鈕扣電池，是需要緊急用胃鏡將它夾出，避免造成腸胃道穿孔或腐蝕受傷。
+
+', 71755);
+
+--文章10
+INSERT INTO article VALUES(('ART'||LPAD(to_char(art_no_seq.NEXTVAL),5,'0')), 'M0000006' , 'AC05', '日本人氣食譜分享！在家做出香濃美味的北海道燉牛奶！' , '26-5月-17 02.17.53 下午', '我知道這裡可以輕易在超市裡買到北海道燉牛奶的醬料或濃縮湯塊，但我們家的北海道燉牛奶是婆婆親自從零開始做起，全部都是食材的原汁原味，喝起來溫和卻充滿蔬菜的甜美和濃濃的牛奶香，清爽不膩卻令人口齒留香、回味無窮。說的也奇怪，喝慣了自家的北海道燉牛奶，再喝用市面販賣的醬料做成的湯頭時，只覺得少了一種溫柔的感覺。如果你也是崇尚自然風味，那更要來看一下，從零開始自己在家裡就可以做的北海道燉牛奶囉！
+
+材料～
+
+雞肉----３００ｇ
+洋蔥----１顆
+馬鈴薯----３顆
+紅蘿蔔----１根
+玉蕈（其它菇類也可）----１包
+清湯高湯塊（Consommé）----兩小顆
+奶油---３２ｇ
+低筋麵粉----３２ｇ
+牛奶----６００ｃｃ
+鹽----１／２小匙
+胡椒粉----適量
+月桂葉----１片
+
+
+作法～
+
+ 
+北海道燉牛奶
+
+１．鍋中放一匙橄欖油，將雞肉兩面稍微煎一下
+北海道燉牛奶
+
+２．再將切成塊狀的洋蔥、馬鈴薯、紅蘿蔔和洗好的玉蕈放進來一起炒一下
+北海道燉牛奶
+
+３．鍋中加水至可以蓋到材料處以中小火燉煮，並放入兩小顆清湯高湯塊攪拌均勻
+北海道燉牛奶
+
+４．在燉煮的過程中，取另一個平底鍋開始製作白醬，放入奶油用中火使其慢慢融化
+北海道燉牛奶
+
+５．當奶油半融後關火!加入用濾網篩過的麵粉
+北海道燉牛奶
+
+６．在熄火的狀況下攪拌均勻後再開中火，繼續攪拌成照片上的黏稠狀
+北海道燉牛奶
+
+７．此時加入牛奶攪拌均勻（持續中火）
+北海道燉牛奶
+
+８．加入一片月桂葉、半小匙鹽和黑胡椒，繼續攪拌用中火加熱
+北海道燉牛奶
+
+９．沸騰後轉小火，持續慢慢攪拌一分鐘左右有一點稠度後，拿出月桂葉熄火，白醬就完成了
+北海道燉牛奶
+
+１０．從鍋中拿出一些湯和1/3白醬均勻融合後再放入鍋中攪拌均勻，此動作請重複三次，此時湯已和白醬完全結合在一起，再燉煮一下
+北海道燉牛奶
+
+１１．最後再用一些鹽調味即可，濃稠適中，可以喝到香醇的牛奶香，味道卻很溫和，很適合跟麵包一起享用
+請特別注意製作白醬時的細節，持續攪拌是一大重點，白醬做得順手後，不只濃湯，連焗烤、白醬義大利麵、燉飯等等都不用靠市賣的醬料就輕易地可以自己來處理了!
+
+', 8413);
+
+--文章11
+INSERT INTO article VALUES(('ART'||LPAD(to_char(art_no_seq.NEXTVAL),5,'0')), 'M0000003' , 'AC04', '你還在堅持讓孩子趴睡嗎？醫師談趴睡的窒息風險' , '21-7月-17 12.15.44 下午', '今天一早到醫院來就聽到這個不幸的消息
+
+一個月大的寶寶，半夜被發現沒了呼吸，緊急送來急診最後仍因缺氧過久不治
+
+據家長描述，當時孩子是”趴睡”。
+
+ 
+
+一歲以下嬰兒突然死亡，且經過完整病理解剖、解析死亡過程並檢視臨床病史
+
+等詳細調查後仍未能找到死因者稱為
+
+嬰兒猝死症候群
+
+ 
+
+此症好發最好發在2個月以上到3個月大的嬰兒，1個月大以下的嬰兒少見，目前已經
+
+有許多報告證實和 ”趴睡” 有明顯相關，且在冬天有較高的發生率。
+
+ 
+
+1980年代荷蘭的流行病學調查，當時發現趴睡是嬰兒猝死症候群的的危險因素之一。
+
+雖然此事並未受到重視，但後來紐澳等國家也陸續發現趴睡是重要的危險因素，於
+
+是從1991 年開始宣導不要趴睡，結果該地的嬰兒猝死症候群發生率急遽下降。美
+
+國於1992年開始建議不要趴睡，並於1994年發起"Back to Sleep"運動，同樣得到
+
+嬰兒猝死大幅減少的成果。
+
+ 
+
+但是很多的爸爸媽媽或長輩即使知道以上訊息，仍然為了所謂頭型好看，持續給
+
+孩子趴睡，最常聽過的理由是:
+
+ 1.  我叔叔的阿姨的小孩趴睡都沒事
+
+  2.  我孩子剛出生在醫院時護理師都給小孩趴睡呀，那趴睡應該沒事才對', 23574);
+
+
+--文章12
+INSERT INTO article VALUES(('ART'||LPAD(to_char(art_no_seq.NEXTVAL),5,'0')), 'M0000006' , 'AC02', '引導6Y以下兒童，愛上英文故事五要點' , '21-4月-17 02.13.46 下午', '三歲前小孩看的英文繪本，大多都是圖片大、文字少的故事書。當小孩略懂些英文單字後，如何讓他喜歡上聽單字多、句子長的英文故事呢？今天淞兒媽咪用【迪士尼 / 電影有聲書】來示範，如何引導三歲的淞兒，從看圖的繪本轉到學習聆聽長篇故事吧 :)
+
+
+Disney 英文有聲書系列，以有聲書形式重現經典故事，將情節濃縮，每本都會附一片 CD ，讓小朋友在閱讀時，一邊聽聲音進入情節！這次帶來多達 36 個故事主題，有可愛大人氣的怪獸大學、玩具總動員；還有新加入的海洋奇緣、汽車總動員3、星際異攻隊都是近期很熱門的電影動畫喔！
+', 662);
+
+
+--文章13
+INSERT INTO article VALUES(('ART'||LPAD(to_char(art_no_seq.NEXTVAL),5,'0')), 'M0000007' , 'AC02', '孩子，怎麼又在墊腳尖了？深入了解幼兒墊腳尖的原因' , CURRENT_TIMESTAMP,  '小美剛過了兩歲生日，就在生日派對上，阿姨看到了小美走路的時候總是墊起腳尖，彷彿穿了一雙隱形高跟鞋一樣。阿姨跟媽媽說了這樣的情況，媽媽才想起來，小美從會走路開始，就總是墊著腳尖走路，大家還認為這樣很可愛呢！卻沒有想過可能發生了什麼問題。
+
+　　當孩子開始進入學步期，會有一段期間墊腳尖走路，這是屬於正常現象，醫學上認為這樣的過程有助於孩子提昇平衡能力以及加強腳部的肌肉力量，這大約會持續半年到一年的期間。雖然屬於正常現象，但是我們仍建議家長不要掉以輕心，雖然是因為發展需要而墊腳尖走路，但是隨著時間的累積，孩子可能將墊腳尖走路養成習慣，然而當發展到一定程度而應該正常走路後，孩子卻會因為習慣而繼續墊腳尖走路，這就容易造成關節與肌肉的傷害。當孩子剛開始學習走路而墊腳尖，爸爸媽媽可以利用穿不穿鞋做為區別，當孩子在家中光腳遊戲時，可以允許他墊腳尖，但是只要穿上鞋子，我們就應該隨時提醒孩子要把腳「踩下去」，甚至可以將雙手放在孩子肩膀上，輕輕往下壓，讓整個鞋底能貼在地面，孩子也會知道我們要她做的是什麼。
+
+　　另一種孩子墊腳尖也屬於正常現象的狀況是，因為家中的擺設都是以大人的角度來設計的，因此當孩子開始走路時，她開始發現客廳茶几上有新鮮的物品，或是對沙發上的靠墊感到好奇，於是為了要能夠摸到這些物品，就必須要墊起腳尖，就像是我們要更換天花板燈管時也需要墊起腳尖一樣，這是屬於正常現象，代表著孩子具有解決問題的能力，因此爸爸媽媽可以放心。不正常的墊腳尖步態，指的是平常走路時都墊起腳尖，而不是在特殊環境或特別情況下的墊腳尖，就像是孩子學了芭蕾舞以後，開始喜歡墊起腳尖，這也算是正常的現象。然而這樣的正常狀況，如果次數過於頻繁，由於孩子的雙腳骨骼肌肉尚未發展完全，會因為墊腳尖時的壓力或穩定性問題而導致關節的不穩定，不僅可能容易跌倒，甚至進而造成骨骼肌肉的傷害，為了避免這樣的狀況發生，除了提醒孩子盡量雙腳著地以外，也可以將孩子需要拿的東西放置在孩子伸手就可以拿到的位置，而當孩子語言能力足夠後，更可以教導孩子利用口語表達請大人幫忙拿東西，而不要自己墊腳尖嘗試。
+', 6621);
+INSERT INTO article VALUES(('ART'||LPAD(to_char(art_no_seq.NEXTVAL),5,'0')), 'M0000008' , 'AC02', '媽媽，我記得妳！不可思議的「胎內記憶」' , CURRENT_TIMESTAMP,  '或許有不少媽咪，都曾聽過小孩說出一些乍聽之下感覺像是童言童語，但仔細一聽，才發現這些話似乎是來自於還待在孕肚裡的記憶，也就是「胎內記憶」。        
+
+我還記得在肚子裡發生的事喔！
+胎內記憶，顧名思義，就是小寶寶還在媽媽子宮內的記憶，像是：
+
+「裡頭很溫暖、我時常飄來飄去，轉來轉去，偶爾手與腳會撞到牆壁。」
+
+「像是噗通掉進海裡的感覺。水暖暖的、有點鹹，有時我會喝很多喔。」
+
+「在媽媽肚子裡的時候，手和腳都會撞到牆，有時還會擠到臉。」
+
+—池川明，2015，《媽媽，我記得你》
+
+『寶寶在溫暖的子宮裡，在羊水中飄動、翻轉、伸展，擺出各種動作與姿勢，偶爾踢一踢媽咪的肚子，這些寶寶可能都記在腦海中呢』
+
+每三個就有一個，記得自己為什麼來到世上。
+對「胎內記憶」研究最深的，莫過於日本的知名婦產科醫師池川明，他深入調查與訪談了共3千6百多對的親子。他發現其中有33%、等於每三個小孩中就有一個小孩回答有「胎內記憶」，而有「誕生記憶」的則有21%。
+
+關於出生以前，叫做胎內記憶。而還有一種是小孩出生那一刻的記憶，叫做「誕生記憶」。
+
+「水裡越來越擠，而且黑漆漆的，所以我決定離開。躺著轉來轉去，頭先離開水裡，感覺真舒服。」
+
+「出來的時候，臉被擠得很痛、光很刺眼。我覺得冷，張開眼睛後看到肚子的繩子被剪刀夾住。」
+
+—池川明，2015，《媽媽，我記得你》', 16002);
+
+
 
 
 ----------------------------------
@@ -2021,51 +2188,19 @@ VALUES ('AF'||LPAD(TO_CHAR(auth_no_seq.NEXTVAL),2,'0'),
 INSERT INTO
 authority_feature (auth_no, auth_name)
 VALUES ('AF'||LPAD(TO_CHAR(auth_no_seq.NEXTVAL),2,'0'), 
-'推薦機構管理');
+'推薦管理');
 INSERT INTO
 authority_feature (auth_no, auth_name)
 VALUES ('AF'||LPAD(TO_CHAR(auth_no_seq.NEXTVAL),2,'0'), 
-'推薦副食品管理');
+'分類管理');
 INSERT INTO
 authority_feature (auth_no, auth_name)
 VALUES ('AF'||LPAD(TO_CHAR(auth_no_seq.NEXTVAL),2,'0'), 
-'購物分類管理');
-INSERT INTO
-authority_feature (auth_no, auth_name)
-VALUES ('AF'||LPAD(TO_CHAR(auth_no_seq.NEXTVAL),2,'0'), 
-'專家分類管理');
-INSERT INTO
-authority_feature (auth_no, auth_name)
-VALUES ('AF'||LPAD(TO_CHAR(auth_no_seq.NEXTVAL),2,'0'), 
-'問題分類管理');
-INSERT INTO
-authority_feature (auth_no, auth_name)
-VALUES ('AF'||LPAD(TO_CHAR(auth_no_seq.NEXTVAL),2,'0'), 
-'文章分類管理');
-INSERT INTO
-authority_feature (auth_no, auth_name)
-VALUES ('AF'||LPAD(TO_CHAR(auth_no_seq.NEXTVAL),2,'0'), 
-'商品分類管理');
-INSERT INTO
-authority_feature (auth_no, auth_name)
-VALUES ('AF'||LPAD(TO_CHAR(auth_no_seq.NEXTVAL),2,'0'), 
-'檢舉買家管理');
-INSERT INTO
-authority_feature (auth_no, auth_name)
-VALUES ('AF'||LPAD(TO_CHAR(auth_no_seq.NEXTVAL),2,'0'), 
-'檢舉商品管理');
-INSERT INTO
-authority_feature (auth_no, auth_name)
-VALUES ('AF'||LPAD(TO_CHAR(auth_no_seq.NEXTVAL),2,'0'), 
-'檢舉用戶管理');
-INSERT INTO
-authority_feature (auth_no, auth_name)
-VALUES ('AF'||LPAD(TO_CHAR(auth_no_seq.NEXTVAL),2,'0'), 
-'檢舉商家管理');
-INSERT INTO
-authority_feature (auth_no, auth_name)
-VALUES ('AF'||LPAD(TO_CHAR(auth_no_seq.NEXTVAL),2,'0'), 
-'檢舉留言管理');
+'檢舉管理');
+
+
+
+commit;
 
 ----------------------------------
 --管理員權限INSERT資料
@@ -2076,6 +2211,7 @@ VALUES ('AF'||LPAD(TO_CHAR(auth_no_seq.NEXTVAL),2,'0'),
 --    CONSTRAINT admauth_adm_no_auth_no_pk PRIMARY KEY (adm_no, auth_no),
 --    CONSTRAINT admauth_adm_no_fk FOREIGN KEY (adm_no) REFERENCES admin (adm_no),
 --    CONSTRAINT admauth_auth_no_fk FOREIGN KEY (auth_no) REFERENCES authority_feature (auth_no));
+
 
 INSERT INTO
 admin_authority (adm_no, auth_no)
@@ -2193,6 +2329,30 @@ INSERT INTO news (new_no, new_date, new_title, new_cnt) VALUES ('NEW'||LPAD(to_c
 可能還有其他微生物因子也會造成影響。2014年發表在《小兒科》上的一篇報告指出，孟加拉嬰兒對破傷風、結核病和口服小兒麻痺疫苗的反應，與腸道內不同的細菌組成有關。總結這些研究，人體內的原生細菌會影響每個人對疫苗的免疫反應，這些發現是否會促成微生物群系檢查或應用在特別益生菌補充劑配方，仍有待觀察。 
 
 不過可以確定的是，詳細研究人體內的微生物，能幫助科學家大幅提升疫苗的功效，而這一小步進展將能拯救成千上萬條生命。');
+
+INSERT INTO 
+news (new_no, new_date, new_title, new_cnt)
+VALUES ('NEW'||LPAD(TO_CHAR(new_no_seq.NEXTVAL),5,'0'), 
+CURRENT_TIMESTAMP, '2017 中台灣生育津貼、育兒津貼、托育補助等福利貼心總整理',
+'今年最新的孕期/育兒相關福利，媽咪愛都幫大家整理好了！
+本篇包含苗栗縣、台中市、彰化縣、南投縣、雲林縣，歡迎分享本文給需要的爸比媽咪喔！
+
+溫馨提醒：
+1. 「生育津貼（生育獎勵金）」根據不同的縣市，第二胎後可能會有不同的津貼，且申請的設籍要求與期限各不相同。
+
+2.  各縣市下轄鄉鎮有機會有不同的額外津貼，且不與生育津貼衝突
+ （媽咪們應自行搜尋＿＿＿鄉/鎮 生育補助，千萬別漏掉自身權益呀！）
+
+3.  「父母未就業家庭育兒津貼」全台都有，正常是月領 2500（年收未達1,170,000 元；且父母其中一人未就業），但實領金額依收入會有改變唷！
+
+4.  「托育補助」全台都有，正常是月領 2000，但依補助資格會有改變唷！
+ 【注意：托育補助、父母未就業家庭育兒津貼、育嬰留職停薪津貼，三者僅能選一樣進行補助】
+
+5.  各縣市都另有第三胎以上、低收入、單親等......特殊境遇的補助款項唷！
+
+6. 爸媽們一定要特別注意，以下整理之各縣市補助方案，看定目標的津貼後，要點到相關連結內詳閱所有申請資格及限制唷！
+');
+
 
 
 COMMIT;

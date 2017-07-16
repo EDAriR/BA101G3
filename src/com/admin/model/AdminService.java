@@ -11,7 +11,7 @@ public class AdminService {
         dao = new AdminDAO();
     }
 
-    public AdminVO addChat_Friend(String adm_acct, String adm_pwd,
+    public AdminVO addAdmin(String adm_acct, String adm_pwd,
                                   String adm_name, String adm_mail) {
 
         AdminVO adminVO = new AdminVO();
@@ -46,6 +46,8 @@ public class AdminService {
     public AdminVO getOneAD(String adm_no) {
         return dao.findByPrimaryKey(adm_no);
     }
+
+    public AdminVO getOneAdmin(String adm_acct) { return dao.findByAdmAcct(adm_acct); }
 
     public List<AdminVO> getAll() {
         return dao.getAll();

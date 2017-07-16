@@ -2,7 +2,7 @@ package com.member.model;
 
 import java.sql.Date;
 
-public class MemberVO  implements java.io.Serializable{
+public class MemberVO implements java.io.Serializable{
 	private String mem_no; // Not Null (PK)
 	private String exp_no; // (FK)
 	private String memg_gr; // Not Null 0：一般會員 1：資深爸爸媽媽 2：專家
@@ -12,6 +12,7 @@ public class MemberVO  implements java.io.Serializable{
 	private Date mem_updated;
 	private String mem_name; // Not Null
 	private String mem_aka;
+	private byte[] mem_photo; 
 	private String mem_adds; // Not Null
 	private String mem_addc;
 	private String mem_phone;
@@ -28,6 +29,17 @@ public class MemberVO  implements java.io.Serializable{
 	public MemberVO() {
 		super();
 	}
+
+	
+	public byte[] getMem_photo() {
+		return mem_photo;
+	}
+
+
+	public void setMem_photo(byte[] mem_photo) {
+		this.mem_photo = mem_photo;
+	}
+
 
 	public String getMem_no() {
 		return mem_no;

@@ -1,13 +1,17 @@
 package com.admin.controller;
 
-import java.io.*;
-import java.util.*;
+import com.admin.model.Authority_FeatureService;
+import com.admin.model.Authority_FeatureVO;
 
-import javax.servlet.*;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
-
-import com.admin.model.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 @WebServlet("/AuthorityFeatureServlet.do")
 public class AuthorityFeatureServlet extends HttpServlet {
@@ -56,31 +60,31 @@ public class AuthorityFeatureServlet extends HttpServlet {
             }
         }
 
-        /*if ("delete_Dept".equals(action)) {
+        if ("delete_Dept".equals(action)) {
 
             List<String> errorMsgs = new LinkedList<String>();
             req.setAttribute("errorMsgs", errorMsgs);
 
             try {
-                *//***************************1.接收請求參數***************************************//*
+                //***************************1.接收請求參數***************************************//*
                 String auth_no = new String(req.getParameter("auth_no"));
 
-                *//***************************2.開始刪除資料***************************************//*
+                //***************************2.開始刪除資料***************************************//*
                 Authority_FeatureService authority_FeatureSvc = new Authority_FeatureService();
-                authority_FeatureSvc.deleteAF(auth_no);
+//                authority_FeatureSvc.deleteAF(auth_no);
 
-                *//***************************3.刪除完成,準備轉交(Send the Success view)***********//*
+                //***************************3.刪除完成,準備轉交(Send the Success view)***********//*
                 String url = "/dept/listAllAF.jsp";
                 RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後, 成功轉交 回到 /dept/listAllAF.jsp
                 successView.forward(req, res);
 
-                *//***************************其他可能的錯誤處理***********************************//*
+                //***************************其他可能的錯誤處理***********************************//*
             } catch (Exception e) {
                 errorMsgs.add("刪除資料失敗:" + e.getMessage());
                 RequestDispatcher failureView = req
                         .getRequestDispatcher("/AuthorityFeature/listAllAF.jsp");
                 failureView.forward(req, res);
             }
-        }*/
+        }
     }
 }

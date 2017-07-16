@@ -276,4 +276,10 @@ public class AdminJDBCDAO implements AdminDAO_interface {
 //        }
 
     }
+
+	@Override
+	public AdminVO findByAdmAcct(String adm_acct) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

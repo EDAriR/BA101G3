@@ -28,12 +28,13 @@ public class Chat_FriendDAO implements Chat_FriendDAO_interface {
 
     // 新增資料
     private static final String INSERT_STMT = "INSERT INTO chat_friend (cf_no, mem_no_s, mem_no_o, cf_is_del) " +
-            "VALUES ('cf'||LPAD(TO_CHAR(cf_no_seq.NEXTVAL),3,'0'), ?, ?, ?)";
+            "VALUES ('CF'||LPAD(TO_CHAR(cf_no_seq.NEXTVAL),6,'0'), ?, ?, ?)";
     // 查詢資料
     private static final String GET_ALL_STMT = "SELECT cf_no, mem_no_s, mem_no_o, cf_is_del FROM chat_friend";
     private static final String GET_ONE_STMT = "SELECT cf_no, mem_no_s, mem_no_o, cf_is_del FROM chat_friend WHERE cf_no = ?";
-    // 刪除資料
-    private static final String DELETE_PROC = "DELETE FROM chat_friend WHERE cf_no = ?";
+    private static final String GET_MNS_STMT = "SELECT cf_no, mem_no_s, mem_no_o, cf_is_del FROM chat_friend WHERE mem_no_s = ?";
+    private static final String GET_OMF_STMT = "SELECT cf_no, mem_no_s, mem_no_o, cf_is_del FROM chat_friend WHERE mem_no_o = ?";
+    private static final String GET_MNO_STMT = "SELECT cf_no, mem_no_s, mem_no_o, cf_is_del FROM chat_friend WHERE mem_no_s = ? AND mem_no_o = ?";
     // 修改資料
     private static final String UPDATE = "UPDATE chat_friend SET cf_is_del=? WHERE cf_no = ? ";
 
@@ -134,12 +135,171 @@ public class Chat_FriendDAO implements Chat_FriendDAO_interface {
                 chat_FriendVO = new Chat_FriendVO();
                 chat_FriendVO.setCf_no(rs.getString("cf_no"));
                 chat_FriendVO.setMem_no_o(rs.getString("mem_no_o"));
+                chat_FriendVO.setCf_is_del(rs.getString("cf_is_del"));
             }
             // Handle any SQL errors
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. "
                     + se.getMessage());
             // Clean up JDBC resources
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+        return chat_FriendVO;
+    }
+
+    @Override
+    public List<Chat_FriendVO> findByMemNoS(String mem_no_s) {
+
+        List<Chat_FriendVO> list = new ArrayList<Chat_FriendVO>();
+        Chat_FriendVO chat_FriendVO = null;
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            con = ds.getConnection();
+            pstmt = con.prepareStatement(GET_MNS_STMT);
+            pstmt.setString(1, mem_no_s);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                chat_FriendVO = new Chat_FriendVO();
+                chat_FriendVO.setCf_no(rs.getString("cf_no"));
+                chat_FriendVO.setMem_no_s(rs.getString("mem_no_s"));
+                chat_FriendVO.setMem_no_o(rs.getString("mem_no_o"));
+                chat_FriendVO.setCf_is_del(rs.getString("cf_is_del"));
+                list.add(chat_FriendVO); // Store the row in the list
+            }
+            // Handle any SQL errors
+        } catch (SQLException se) {
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public List<Chat_FriendVO> findByMemNoO(String mem_no_o) {
+
+        List<Chat_FriendVO> list = new ArrayList<Chat_FriendVO>();
+        Chat_FriendVO chat_FriendVO = null;
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            con = ds.getConnection();
+            pstmt = con.prepareStatement(GET_OMF_STMT);
+            pstmt.setString(1, mem_no_o);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                chat_FriendVO = new Chat_FriendVO();
+                chat_FriendVO.setCf_no(rs.getString("cf_no"));
+                chat_FriendVO.setMem_no_s(rs.getString("mem_no_s"));
+                chat_FriendVO.setMem_no_o(rs.getString("mem_no_o"));
+                chat_FriendVO.setCf_is_del(rs.getString("cf_is_del"));
+                list.add(chat_FriendVO); // Store the row in the list
+            }
+            // Handle any SQL errors
+        } catch (SQLException se) {
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public Chat_FriendVO findByMemNo(String mem_no_s, String mem_no_o) {
+
+        Chat_FriendVO chat_FriendVO = null;
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            con = ds.getConnection();
+            pstmt = con.prepareStatement(GET_MNO_STMT);
+            pstmt.setString(1, mem_no_s);
+            pstmt.setString(2, mem_no_o);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                chat_FriendVO = new Chat_FriendVO();
+                chat_FriendVO.setCf_no(rs.getString("cf_no"));
+                chat_FriendVO.setMem_no_s(rs.getString("mem_no_s"));
+                chat_FriendVO.setMem_no_o(rs.getString("mem_no_o"));
+                chat_FriendVO.setCf_is_del(rs.getString("cf_is_del"));
+            }
+            // Handle any SQL errors
+        } catch (SQLException se) {
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
         } finally {
             if (rs != null) {
                 try {
@@ -183,7 +343,9 @@ public class Chat_FriendDAO implements Chat_FriendDAO_interface {
             while (rs.next()) {
                 chat_FriendVO = new Chat_FriendVO();
                 chat_FriendVO.setCf_no(rs.getString("cf_no"));
+                chat_FriendVO.setMem_no_s(rs.getString("mem_no_s"));
                 chat_FriendVO.setMem_no_o(rs.getString("mem_no_o"));
+                chat_FriendVO.setCf_is_del(rs.getString("cf_is_del"));
                 list.add(chat_FriendVO); // Store the row in the list
             }
             // Handle any SQL errors

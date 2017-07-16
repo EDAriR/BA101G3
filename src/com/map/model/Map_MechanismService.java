@@ -10,14 +10,13 @@ public class Map_MechanismService {
 		dao = new Map_MechanismDAO();
 	}
 
-	public Map_MechanismVO addMap_Mechanism(String map_no, String mem_no, String mapc_no,
+	public Map_MechanismVO addMap_Mechanism(String mem_no, String mapc_no,
 			String map_name, String map_adds, String map_addc, Double map_long, Double map_lat,
 			String map_phone, String map_mail, String map_cnt, byte[] map_photo, byte[] map_photo1, 
 			byte[] map_photo2, byte[] map_photo3, byte[] map_photo4, byte[] map_photo5) {
 
 		Map_MechanismVO map_mechanismVO = new Map_MechanismVO();
 
-		map_mechanismVO.setMap_no(map_no);
 		map_mechanismVO.setMem_no(mem_no);
 		map_mechanismVO.setMapc_no(mapc_no);
 		map_mechanismVO.setMap_name(map_name);

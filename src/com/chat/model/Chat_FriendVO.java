@@ -7,7 +7,7 @@ public class Chat_FriendVO implements Serializable {
     private String cf_no;       // Not Null (PK)
     private String mem_no_s;    // Not Null (FK)
     private String mem_no_o;    // Not Null (FK)
-    private String cf_is_del;   // Not Null 0：否 (預設) 1：是
+    private String cf_is_del;   // Not Null 0：邀請中 (預設) 1：是 2:否
 
     public Chat_FriendVO() {
         super();

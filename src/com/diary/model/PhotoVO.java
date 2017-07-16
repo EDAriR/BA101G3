@@ -1,7 +1,6 @@
 package com.diary.model;
 
 import java.io.Serializable;
-import java.sql.Blob;
 import java.sql.Timestamp;
 
 public class PhotoVO implements Serializable {

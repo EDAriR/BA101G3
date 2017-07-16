@@ -1,7 +1,6 @@
 
 package com.diary.model;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -13,9 +12,8 @@ public class PhotoService {
         dao = new PhotoDAO();
     }
 
-    public PhotoVO addPhoto(String pho_no, String baby_no, String pho_title,
-                            Timestamp pho_date, String pho_annot,
-                            byte[] pho_file, String pho_shr) {
+    public PhotoVO addPhoto(String baby_no, String pho_title,
+                            String pho_annot, byte[] pho_file, String pho_shr) {
 
         PhotoVO photoVO = new PhotoVO();
 
@@ -30,18 +28,6 @@ public class PhotoService {
         return photoVO;
     }
 
-    /*public PhotoVO updateAdmin(String baby_no, String pho_title, String pho_annot,
-                               String pho_shr) {
-
-        PhotoVO photoVO = new PhotoVO();
-
-        photoVO.setBaby_no(baby_no);
-        photoVO.setPho_title(pho_title);
-        photoVO.setPho_annot(pho_annot);
-        photoVO.setPho_shr(pho_shr);
-        dao.update(photoVO);
-        return photoVO;
-    }*/
     public void deletePhoto(String pho_no) {
 
         PhotoVO photoVO = new PhotoVO();
@@ -55,7 +41,26 @@ public class PhotoService {
         return dao.findByPrimary(pho_no);
     }
 
+    public List<PhotoVO> findBybaby(String baby_no) { return dao.findBybaby(baby_no); }
+
     public List<PhotoVO> getAll() {
         return dao.getAll();
     }
+
+    public PhotoVO updatePhoto(String baby_no, String pho_title, String pho_annot,
+                               String pho_shr, String pho_no) {
+
+        PhotoVO photoVO = new PhotoVO();
+        
+        System.out.println("updatePhoto in SVC pho_no: " + pho_no + " pho_shr : " +pho_shr + " baby_no : " + baby_no);
+
+        photoVO.setBaby_no(baby_no);
+        photoVO.setPho_title(pho_title);
+        photoVO.setPho_annot(pho_annot);
+        photoVO.setPho_shr(pho_shr);
+        photoVO.setPho_no(pho_no);
+        dao.update(photoVO);
+        return photoVO;
+    }
+
 }

@@ -1,7 +1,8 @@
 package com.chat.model;
 
-import java.util.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
